@@ -8,7 +8,9 @@ uses
   Horse,
   Horse.Jhonson,
   System.SysUtils,
-  Routes in 'src\Controller\Routes.pas';
+  Routes in 'Routes.pas',
+  BibliotecaPessoalAPI.Model.Resource.Interfaces in 'src\Model\Resource\BibliotecaPessoalAPI.Model.Resource.Interfaces.pas',
+  BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas';
 
 var
   App: THorse;
@@ -16,9 +18,9 @@ var
 begin
   App := THorse.Create;
 
-  App.Use(Jhonson);
-
   Routes.Registry;
+
+  App.Use(Jhonson);
 
   App.Listen(9000,
     procedure(App: THorse) begin
@@ -26,7 +28,7 @@ begin
       Writeln(Format('Servidor: %s',[App.Host]));
       Writeln(Format('Porta: %d',[App.Port]));
       {IFDEBUG}
-        Writeln('Acesso: http://localhost:9000');
+        Writeln('Acesso: http://localhost:' + App.Port.ToString);
       {ENDIF}
       Readln;
     end
