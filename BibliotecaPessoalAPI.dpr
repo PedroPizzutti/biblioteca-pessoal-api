@@ -7,7 +7,8 @@ program BibliotecaPessoalAPI;
 uses
   Horse,
   Horse.Jhonson,
-  System.SysUtils;
+  System.SysUtils,
+  Routes in 'src\Controller\Routes.pas';
 
 var
   App: THorse;
@@ -17,9 +18,16 @@ begin
 
   App.Use(Jhonson);
 
+  Routes.Registry;
+
   App.Listen(9000,
-    procedure(Horse: THorse) begin
-      Writeln(Format('Servidor rodando em %s, porta: %d',[Horse.Host, Horse.Port]));
+    procedure(App: THorse) begin
+      Writeln('--- API Executando ---');
+      Writeln(Format('Servidor: %s',[App.Host]));
+      Writeln(Format('Porta: %d',[App.Port]));
+      {IFDEBUG}
+        Writeln('Acesso: http://localhost:9000');
+      {ENDIF}
       Readln;
     end
   );
