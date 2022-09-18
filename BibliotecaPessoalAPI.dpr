@@ -10,7 +10,8 @@ uses
   System.SysUtils,
   Routes in 'Routes.pas',
   BibliotecaPessoalAPI.Model.Resource.Interfaces in 'src\Model\Resource\BibliotecaPessoalAPI.Model.Resource.Interfaces.pas',
-  BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas';
+  BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas',
+  BibliotecaPessoalAPI.Model.Rosource.Impl.ConeoxaoFireDACSQLite in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConeoxaoFireDACSQLite.pas';
 
 var
   App: THorse;
