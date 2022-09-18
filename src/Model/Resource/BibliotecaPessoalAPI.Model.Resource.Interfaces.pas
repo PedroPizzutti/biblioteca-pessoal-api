@@ -31,7 +31,7 @@ type
     function Locking: String; overload;
   end;
 
-  iResource = interface
+  iResourceFactory = interface
     function Conexao: iConexao;
     function Configuracao: iConfiguracao;
   end;

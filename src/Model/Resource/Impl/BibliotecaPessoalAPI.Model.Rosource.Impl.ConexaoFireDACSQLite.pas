@@ -1,4 +1,4 @@
-unit BibliotecaPessoalAPI.Model.Rosource.Impl.ConeoxaoFireDACSQLite;
+unit BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite;
 
 interface
 
@@ -44,6 +44,8 @@ implementation
 function TConexaoFireDACSQLite.Conectar: TCustomConnection;
 begin
   try
+    SetaConfiguracao;
+
     FConexao.Params.DriverID := FConfiguracao.DriverID;
     FConexao.Params.Database := FConfiguracao.DataBase;
     FConexao.Params.UserName := FConfiguracao.UserName;
@@ -91,7 +93,7 @@ begin
   try
     FConfiguracao
         .DriverID('SQLite')
-        .DataBase('D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\database\bibliotecaPessoalBD.sdb')
+        .DataBase('D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\database\bibliotecaPessoalBD')
         .UserName('')
         .Password('')
         .Port('')

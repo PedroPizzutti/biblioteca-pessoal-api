@@ -11,17 +11,21 @@ uses
   Routes in 'Routes.pas',
   BibliotecaPessoalAPI.Model.Resource.Interfaces in 'src\Model\Resource\BibliotecaPessoalAPI.Model.Resource.Interfaces.pas',
   BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas',
-  BibliotecaPessoalAPI.Model.Rosource.Impl.ConeoxaoFireDACSQLite in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConeoxaoFireDACSQLite.pas';
+  BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory.pas',
+  BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite.pas';
 
 var
   App: THorse;
+  Conexao: iConexao;
 
 begin
   App := THorse.Create;
-
-  Routes.Registry;
+  Conexao := TResourceFactory.New.Conexao;
 
   App.Use(Jhonson);
+
+  Routes.Registry;
+  Conexao.Conectar;
 
   App.Listen(9000,
     procedure(App: THorse) begin
@@ -33,5 +37,5 @@ begin
       {ENDIF}
       Readln;
     end
-  );
+    );
 end.
