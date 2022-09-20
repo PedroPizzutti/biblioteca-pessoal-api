@@ -12,7 +12,8 @@ uses
   BibliotecaPessoalAPI.Model.Resource.Interfaces in 'src\Model\Resource\BibliotecaPessoalAPI.Model.Resource.Interfaces.pas',
   BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas',
   BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory.pas',
-  BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite.pas';
+  BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite.pas',
+  BibliotecaPessoalAPI.Model.Entity.Usuario in 'src\Model\Entity\BibliotecaPessoalAPI.Model.Entity.Usuario.pas';
 
 var
   App: THorse;
@@ -29,7 +30,7 @@ begin
 
   App.Listen(9000,
     procedure(App: THorse) begin
-      Writeln('--- API Executando ---');
+      Writeln('--- API Biblioteca Pessoal ---');
       Writeln(Format('Servidor: %s',[App.Host]));
       Writeln(Format('Porta: %d',[App.Port]));
       {IFDEBUG}
