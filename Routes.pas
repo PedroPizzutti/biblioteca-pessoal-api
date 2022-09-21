@@ -3,7 +3,7 @@ unit Routes;
 interface
 
 uses
-  Horse;
+  Horse, BibliotecaPessoalAPI.Model.Entity.Usuario, System.SysUtils, BibliotecaPessoalAPI.Model.Service.Impl;
 
   procedure Registry;
 
@@ -14,7 +14,7 @@ procedure Registry;
 begin
   THorse.Get('/',
     procedure (Req: THorseRequest; Res: THorseResponse) begin
-      Res.Send('Rota Home Registrada!');
+      Res.Send('Rota Home Registrada!')
     end
   )
 end;
