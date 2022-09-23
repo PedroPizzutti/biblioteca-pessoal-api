@@ -15,7 +15,9 @@ uses
   BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite.pas',
   BibliotecaPessoalAPI.Model.Entity.Usuario in 'src\Model\Entity\BibliotecaPessoalAPI.Model.Entity.Usuario.pas',
   BibliotecaPessoalAPI.Model.Service.Interfaces in 'src\Model\Service\BibliotecaPessoalAPI.Model.Service.Interfaces.pas',
-  BibliotecaPessoalAPI.Model.Service.Impl in 'src\Model\Service\Impl\BibliotecaPessoalAPI.Model.Service.Impl.pas';
+  BibliotecaPessoalAPI.Model.Service.Impl in 'src\Model\Service\Impl\BibliotecaPessoalAPI.Model.Service.Impl.pas',
+  BibliotecaPessoalAPI.Controller.DTO.Interfaces in 'src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas',
+  BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO in 'src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas';
 
 var
   App: THorse;

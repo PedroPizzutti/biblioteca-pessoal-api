@@ -3,19 +3,19 @@ unit BibliotecaPessoalAPI.Model.Service.Interfaces;
 interface
 
 uses
-  Data.DB;
+  Data.DB, BibliotecaPessoalAPI.Model.Entity.Usuario;
 
 type
-  iService<T: Class> = interface
-    function ListarTodos: iService<T>;
-    function ListarPorId(pId: Integer): iService<T>;
-    function ListarPor(pChave: String; pValor: Variant): iService<T>;
-    function Inserir: iService<T>;
-    function Atualizar: iService<T>;
-    function Excluir: iService<T>; overload;
-    function Excluir(pCampo: String; pValor: String): iService<T>; overload;
-    function DataSource(pDataSource: TDataSource): iService<T>;
-    function This: T;
+  iServiceUsuario = interface
+    function ListarTodos: iServiceUsuario;
+    function ListarPorId(pId: Integer): iServiceUsuario;
+    function ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
+    function Inserir: iServiceUsuario;
+    function Atualizar: iServiceUsuario;
+    function Excluir: iServiceUsuario; overload;
+    function Excluir(pCampo: String; pValor: String): iServiceUsuario; overload;
+    function DataSource(pDataSource: TDataSource): iServiceUsuario;
+    function &End: TUsuario;
   end;
 
 implementation

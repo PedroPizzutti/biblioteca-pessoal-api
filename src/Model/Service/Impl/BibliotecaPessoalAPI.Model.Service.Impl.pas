@@ -3,6 +3,7 @@ unit BibliotecaPessoalAPI.Model.Service.Impl;
 interface
 
 uses
+  BibliotecaPessoalAPI.Model.Entity.Usuario,
   BibliotecaPessoalAPI.Model.Resource.Interfaces,
   BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory,
   BibliotecaPessoalAPI.Model.Service.Interfaces,
@@ -29,104 +30,103 @@ uses
   System.Generics.Collections;
 
 type
-  TService<T: Class, constructor> = class(TInterfacedObject, iService<T>)
+  TServiceUsuario = class(TInterfacedObject, iServiceUsuario)
     private
-      FParent: T;
+      FUsuario: TUsuario;
       FConexao: iConexao;
       FQuery: iSimpleQuery;
-      FDAO: iSimpleDAO<T>;
-      FDataSource: TDataSource;
+      FDAOUsuario: iSimpleDAO<TUsuario>;
     public
-      constructor Create(Parent: T);
+      constructor Create(pUsuario: TUsuario);
       destructor Destroy; override;
-      class function New(Parent: T): iService<T>;
+      class function New(pUsuario: TUsuario): iServiceUsuario;
 
-      function ListarTodos: iService<T>;
-      function ListarPorId(pId: Integer): iService<T>;
-      function ListarPor(pChave: String; pValor: Variant): iService<T>;
-      function Inserir: iService<T>;
-      function Atualizar: iService<T>;
-      function Excluir: iService<T>; overload;
-      function Excluir(pCampo: String; pValor: String): iService<T>; overload;
-      function DataSource(pDataSource: TDataSource): iService<T>;
-      function This: T;
+      function ListarTodos: iServiceUsuario;
+      function ListarPorId(pId: Integer): iServiceUsuario;
+      function ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
+      function Inserir: iServiceUsuario;
+      function Atualizar: iServiceUsuario;
+      function Excluir: iServiceUsuario; overload;
+      function Excluir(pCampo: String; pValor: String): iServiceUsuario; overload;
+      function DataSource(pDataSource: TDataSource): iServiceUsuario;
+      function &End: TUsuario;
   end;
 
 implementation
 
-{ TService<T> }
+{ TServiceUsuario }
 
 
-function TService<T>.Atualizar: iService<T>;
+function TServiceUsuario.Atualizar: iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Update(FParent);
+  FDAOUsuario.Update(FUsuario);
 end;
 
-constructor TService<T>.Create(Parent: T);
+constructor TServiceUsuario.Create(pUsuario: TUsuario);
 begin
-  FParent := Parent;
+  FUsuario := pUsuario;
   FConexao := TResourceFactory.New.Conexao;
   FQuery := TSimpleQueryFiredac.New(TFDConnection(FConexao.Conectar));
-  FDAO := TSimpleDAO<T>.New(FQuery);
+  FDAOUsuario := TSimpleDAO<TUsuario>.New(FQuery);
 end;
 
-function TService<T>.DataSource(pDataSource: TDataSource): iService<T>;
+function TServiceUsuario.DataSource(pDataSource: TDataSource): iServiceUsuario;
 begin
   Result := Self;
-  FDAO.DataSource(pDataSource);
+  FDAOUsuario.DataSource(pDataSource);
 end;
 
-destructor TService<T>.Destroy;
+destructor TServiceUsuario.Destroy;
 begin
 
   inherited;
 end;
 
-function TService<T>.Excluir(pCampo, pValor: String): iService<T>;
+function TServiceUsuario.Excluir(pCampo, pValor: String): iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Delete(pCampo, pValor);
+  FDAOUsuario.Delete(pCampo, pValor);
 end;
 
-function TService<T>.Excluir: iService<T>;
+function TServiceUsuario.Excluir: iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Delete(FParent);
+  FDAOUsuario.Delete(FUsuario);
 end;
 
-function TService<T>.Inserir: iService<T>;
+function TServiceUsuario.Inserir: iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Insert(FParent);
+  FDAOUsuario.Insert(FUsuario);
 end;
 
-function TService<T>.ListarPor(pChave: String; pValor: Variant): iService<T>;
+function TServiceUsuario.ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Find(pChave, pValor);
+  FDAOUsuario.Find(pChave, pValor);
 end;
 
-function TService<T>.ListarPorId(pId: Integer): iService<T>;
+function TServiceUsuario.ListarPorId(pId: Integer): iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Find(pId);
+  FDAOUsuario.Find(pId);
 end;
 
-function TService<T>.ListarTodos: iService<T>;
+function TServiceUsuario.ListarTodos: iServiceUsuario;
 begin
   Result := Self;
-  FDAO.Find(False);
+  FDAOUsuario.Find(False);
 end;
 
-class function TService<T>.New(Parent: T): iService<T>;
+class function TServiceUsuario.New(pUsuario: TUsuario): iServiceUsuario;
 begin
-  Result := Self.Create(Parent);
+  Result := Self.Create(pUsuario);
 end;
 
-function TService<T>.This: T;
+function TServiceUsuario.&End: TUsuario;
 begin
-  Result := FParent;
+  Result := FUsuario;
 end;
 
 end.

@@ -30,5 +30,12 @@
     <Transaction>2022/09/20 22:14:28.000.737,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Service\BibliotecaPessoalAPI.Model.Service.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
     <Transaction>2022/09/20 22:15:33.000.678,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
     <Transaction>2022/09/20 22:17:13.000.162,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Service\Impl\BibliotecaPessoalAPI.Model.Service.Impl.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 21:57:14.113,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 21:58:16.959,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoal.Controller.DTO.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:06:04.733,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:06:42.884,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoal.Controller.DTO.Interfaces.pas=</Transaction>
+    <Transaction>2022/09/22 22:07:22.345,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:07:46.453,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:08:26.747,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

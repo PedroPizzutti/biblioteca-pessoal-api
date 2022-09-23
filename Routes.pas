@@ -3,7 +3,7 @@ unit Routes;
 interface
 
 uses
-  Horse, BibliotecaPessoalAPI.Model.Entity.Usuario, System.SysUtils, BibliotecaPessoalAPI.Model.Service.Impl;
+  Horse;
 
   procedure Registry;
 
