@@ -12,7 +12,6 @@ type
   TUsuarioDTO = class(TInterfacedObject, iUsuarioDTO)
     private
       FUsuario: TUsuario;
-      FServiceUsuario: iServiceUsuario;
     public
       constructor Create;
       destructor Destroy; override;
@@ -24,24 +23,25 @@ type
       function Usuario: String; overload;
       function Senha(pSenha: String): iUsuarioDTO; overload;
       function Senha: String; overload;
+      function Email(pEmail: String): iUsuarioDTO; overload;
+      function Email: String; overload;
       function DataCriacao(pDataCriacao: TDate): iUsuarioDTO; overload;
       function DataCriacao: TDate; overload;
-      function Build: iServiceUsuario;
+      function CriaUsuario: TUsuario;
   end;
 
 implementation
 
 { TUsuarioDTO }
 
-function TUsuarioDTO.Build: iServiceUsuario;
+function TUsuarioDTO.CriaUsuario: TUsuario;
 begin
-  Result := FServiceUsuario;
+  Result := FUsuario;
 end;
 
 constructor TUsuarioDTO.Create;
 begin
   FUsuario := TUsuario.Create;
-  FServiceUsuario := TServiceUsuario.New(FUsuario);
 end;
 
 function TUsuarioDTO.DataCriacao(pDataCriacao: TDate): iUsuarioDTO;
@@ -59,6 +59,17 @@ destructor TUsuarioDTO.Destroy;
 begin
   FUsuario.DisposeOf;
   inherited;
+end;
+
+function TUsuarioDTO.Email: String;
+begin
+  Result := FUsuario.Email;
+end;
+
+function TUsuarioDTO.Email(pEmail: String): iUsuarioDTO;
+begin
+  Result := Self;
+  FUsuario.Email := pEmail;
 end;
 
 function TUsuarioDTO.Id(pId: Integer): iUsuarioDTO;

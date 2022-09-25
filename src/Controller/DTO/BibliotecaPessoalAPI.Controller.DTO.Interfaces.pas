@@ -14,9 +14,11 @@ type
     function Usuario: String; overload;
     function Senha(pSenha: String): iUsuarioDTO; overload;
     function Senha: String; overload;
+    function Email(pEmail: String): iUsuarioDTO; overload;
+    function Email: String; overload;
     function DataCriacao(pDataCriacao: TDate): iUsuarioDTO; overload;
-    function DataCriancao: TDate; overload;
-    function Build: iServiceUsuario;
+    function DataCriacao: TDate; overload;
+    function CriaUsuario: TUsuario;
   end;
 
 implementation

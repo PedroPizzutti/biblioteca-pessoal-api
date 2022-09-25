@@ -3,7 +3,9 @@ unit BibliotecaPessoalAPI.Model.Service.Interfaces;
 interface
 
 uses
-  Data.DB, BibliotecaPessoalAPI.Model.Entity.Usuario;
+  BibliotecaPessoalAPI.Model.Entity.Usuario,
+  Data.DB,
+  System.Generics.Collections;
 
 type
   iServiceUsuario = interface
@@ -14,8 +16,8 @@ type
     function Atualizar: iServiceUsuario;
     function Excluir: iServiceUsuario; overload;
     function Excluir(pCampo: String; pValor: String): iServiceUsuario; overload;
-    function DataSource(pDataSource: TDataSource): iServiceUsuario;
-    function &End: TUsuario;
+    function RetornaLista: TList<TUsuario>;
+    function RetornaUsuario: TUsuario;
   end;
 
 implementation

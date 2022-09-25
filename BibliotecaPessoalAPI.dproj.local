@@ -30,12 +30,45 @@
     <Transaction>2022/09/20 22:14:28.000.737,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Service\BibliotecaPessoalAPI.Model.Service.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
     <Transaction>2022/09/20 22:15:33.000.678,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
     <Transaction>2022/09/20 22:17:13.000.162,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Service\Impl\BibliotecaPessoalAPI.Model.Service.Impl.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/22 21:57:14.113,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/22 21:58:16.959,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoal.Controller.DTO.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/22 22:06:04.733,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/22 22:06:42.884,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoal.Controller.DTO.Interfaces.pas=</Transaction>
-    <Transaction>2022/09/22 22:07:22.345,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/22 22:07:46.453,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/22 22:08:26.747,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 21:57:14.000.113,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 21:58:16.000.959,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoal.Controller.DTO.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:06:04.000.733,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:06:42.000.884,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoal.Controller.DTO.Interfaces.pas=</Transaction>
+    <Transaction>2022/09/22 22:07:22.000.345,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:07:46.000.453,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:08:26.000.747,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:38:41.000.718,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:39:20.000.023,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\BibliotecaPessoalAPI.Controller.Interfaces.pas</Transaction>
+    <Transaction>2022/09/22 22:49:51.000.270,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
+    <Transaction>2022/09/22 22:50:35.000.985,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\Impl\BibliotecaPessoalAPI.Controller.Impl.Usuario.pas</Transaction>
+    <Transaction>2022/09/22 23:48:23.000.173,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Routes.pas=</Transaction>
+    <Transaction>2022/09/22 23:52:48.000.876,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Routes.pas</Transaction>
+    <Transaction>2022/09/22 23:57:26.000.959,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Routes.pas=</Transaction>
+    <Transaction>2022/09/22 23:58:36.000.170,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Routes.pas</Transaction>
+    <Transaction>2022/09/24 10:55:31.000.540,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Controller\BibliotecaPessoalAPI.Controller.Usuario.pas</Transaction>
+    <Transaction>2022/09/24 10:59:12.000.853,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Routes.pas=</Transaction>
+    <Transaction>2022/09/24 22:11:01.570,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
   </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="src"/>
+    <File Path="src\Controller"/>
+    <File Path="src\Controller\DTO"/>
+    <File Path="src\Controller\DTO\Impl"/>
+    <File Path="src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas"/>
+    <File Path="src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas"/>
+    <File Path="src\Controller\BibliotecaPessoalAPI.Controller.Usuario.pas"/>
+    <File Path="src\Model"/>
+    <File Path="src\Model\Entity"/>
+    <File Path="src\Model\Entity\BibliotecaPessoalAPI.Model.Entity.Usuario.pas"/>
+    <File Path="src\Model\Resource"/>
+    <File Path="src\Model\Resource\Impl"/>
+    <File Path="src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite.pas"/>
+    <File Path="src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas"/>
+    <File Path="src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory.pas"/>
+    <File Path="src\Model\Resource\BibliotecaPessoalAPI.Model.Resource.Interfaces.pas"/>
+    <File Path="src\Model\Service"/>
+    <File Path="src\Model\Service\Impl"/>
+    <File Path="src\Model\Service\Impl\BibliotecaPessoalAPI.Model.Service.Impl.pas"/>
+    <File Path="src\Model\Service\BibliotecaPessoalAPI.Model.Service.Interfaces.pas"/>
+  </ProjectSortOrder>
 </BorlandProject>

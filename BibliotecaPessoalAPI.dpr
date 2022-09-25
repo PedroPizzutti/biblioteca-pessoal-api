@@ -7,8 +7,9 @@ program BibliotecaPessoalAPI;
 uses
   Horse,
   Horse.Jhonson,
+  Horse.GBSwagger,
+  Horse.CORS,
   System.SysUtils,
-  Routes in 'Routes.pas',
   BibliotecaPessoalAPI.Model.Resource.Interfaces in 'src\Model\Resource\BibliotecaPessoalAPI.Model.Resource.Interfaces.pas',
   BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao.pas',
   BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory in 'src\Model\Resource\Impl\BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory.pas',
@@ -17,7 +18,9 @@ uses
   BibliotecaPessoalAPI.Model.Service.Interfaces in 'src\Model\Service\BibliotecaPessoalAPI.Model.Service.Interfaces.pas',
   BibliotecaPessoalAPI.Model.Service.Impl in 'src\Model\Service\Impl\BibliotecaPessoalAPI.Model.Service.Impl.pas',
   BibliotecaPessoalAPI.Controller.DTO.Interfaces in 'src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas',
-  BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO in 'src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas';
+  BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO in 'src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas',
+  BibliotecaPessoalAPI.Controller.Usuario in 'src\Controller\BibliotecaPessoalAPI.Controller.Usuario.pas',
+  Winapi.Windows;
 
 var
   App: THorse;
@@ -28,8 +31,11 @@ begin
   Conexao := TResourceFactory.New.Conexao;
 
   App.Use(Jhonson);
+  App.Use(CORS);
+  App.Use(HorseSwagger);
 
-  Routes.Registry;
+  THorseGBSwaggerRegister.RegisterPath(TControllerUsuario);
+
   Conexao.Conectar;
 
   App.Listen(9000,
@@ -40,7 +46,10 @@ begin
       {IFDEBUG}
         Writeln('Acesso: http://localhost:' + App.Port.ToString);
       {ENDIF}
+      Writeln('Pessione ENTER para parar a aplicação...');
       Readln;
+      THorse.StopListen;
+      FreeConsole;
     end
     );
 end.
