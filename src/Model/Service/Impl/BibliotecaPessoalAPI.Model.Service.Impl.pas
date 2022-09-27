@@ -3,6 +3,7 @@ unit BibliotecaPessoalAPI.Model.Service.Impl;
 interface
 
 uses
+  Bcrypt,
   BibliotecaPessoalAPI.Model.Entity.Usuario,
   BibliotecaPessoalAPI.Model.Resource.Interfaces,
   BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory,
@@ -42,6 +43,7 @@ type
 
       procedure PopulaEntidadeUsuario;
       procedure ValidaNovoUsuario(pUsuario: TUsuario);
+    procedure CriptografaSenhaUsuario(var pUsuario: TUsuario);
     public
       constructor Create;
       destructor Destroy; override;
@@ -99,9 +101,8 @@ end;
 function TServiceUsuario.Inserir(pUsuario: TUsuario): iServiceUsuario;
 begin
   Result := Self;
-
   ValidaNovoUsuario(pUsuario);
-
+  CriptografaSenhaUsuario(pUsuario);
   FDAOUsuario.Insert(pUsuario);
 end;
 
@@ -138,6 +139,11 @@ end;
 function TServiceUsuario.RetornaLista: TList<TUsuario>;
 begin
   Result := FLista;
+end;
+
+procedure TServiceUsuario.CriptografaSenhaUsuario(var pUsuario: TUsuario);
+begin
+  pUsuario.Senha := TBCrypt.HashPassword(pUsuario.Senha);
 end;
 
 procedure TServiceUsuario.ValidaNovoUsuario(pUsuario: TUsuario);
