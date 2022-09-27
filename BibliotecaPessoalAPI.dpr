@@ -21,7 +21,8 @@ uses
   BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO in 'src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas',
   BibliotecaPessoalAPI.Controller.Usuario in 'src\Controller\BibliotecaPessoalAPI.Controller.Usuario.pas',
   Winapi.Windows,
-  BibliotecaPessoalAPI.Model.Exception.ExcecaoService in 'src\Model\Exception\BibliotecaPessoalAPI.Model.Exception.ExcecaoService.pas';
+  BibliotecaPessoalAPI.Model.Exception.ExcecaoService in 'src\Model\Exception\BibliotecaPessoalAPI.Model.Exception.ExcecaoService.pas',
+  Bcrypt in 'src\Model\Resource\BCrypt\Bcrypt.pas';
 
 var
   App: THorse;
