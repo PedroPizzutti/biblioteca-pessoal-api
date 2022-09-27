@@ -27,7 +27,8 @@ uses
   SimpleInterface,
   SimpleDAO,
   SimpleQueryFiredac,
-  System.Generics.Collections, System.SysUtils;
+  System.Generics.Collections, System.SysUtils, 
+  BibliotecaPessoalAPI.Model.Exception.ExcecaoService;
 
 type
   TServiceUsuario = class(TInterfacedObject, iServiceUsuario)
@@ -38,21 +39,22 @@ type
       FConexao: iConexao;
       FQuery: iSimpleQuery;
       FDAOUsuario: iSimpleDAO<TUsuario>;
-    procedure PopulaEntidadeUsuario;
+
+      procedure PopulaEntidadeUsuario;
+      procedure ValidaNovoUsuario(pUsuario: TUsuario);
     public
-      constructor Create(pUsuario: TUsuario);
+      constructor Create;
       destructor Destroy; override;
-      class function New(pUsuario: TUsuario): iServiceUsuario;
+      class function New: iServiceUsuario;
 
       function ListarTodos: iServiceUsuario;
       function ListarPorId(pId: Integer): iServiceUsuario;
       function ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
-      function Inserir: iServiceUsuario;
-      function Atualizar: iServiceUsuario;
+      function Inserir(pUsuario: TUsuario): iServiceUsuario;
+      function Atualizar(pUsuario: TUsuario): iServiceUsuario;
       function Excluir: iServiceUsuario; overload;
       function Excluir(pCampo: String; pValor: String): iServiceUsuario; overload;
       function RetornaLista: TList<TUsuario>;
-      function RetornaUsuario: TUsuario;
   end;
 
 implementation
@@ -60,17 +62,16 @@ implementation
 { TServiceUsuario }
 
 
-function TServiceUsuario.Atualizar: iServiceUsuario;
+function TServiceUsuario.Atualizar(pUsuario: TUsuario): iServiceUsuario;
 begin
   Result := Self;
-  FDAOUsuario.Update(FUsuario);
+  FDAOUsuario.Update(pUsuario);
 end;
 
-constructor TServiceUsuario.Create(pUsuario: TUsuario);
+constructor TServiceUsuario.Create;
 begin
   FLista := TList<TUsuario>.Create;
   FDataSource := TDataSource.Create(nil);
-  FUsuario := pUsuario;
   FConexao := TResourceFactory.New.Conexao;
   FQuery := TSimpleQueryFiredac.New(TFDConnection(FConexao.Conectar));
   FDAOUsuario := TSimpleDAO<TUsuario>.New(FQuery);
@@ -95,15 +96,13 @@ begin
   FDAOUsuario.Delete(FUsuario);
 end;
 
-function TServiceUsuario.Inserir: iServiceUsuario;
+function TServiceUsuario.Inserir(pUsuario: TUsuario): iServiceUsuario;
 begin
   Result := Self;
-  FDAOUsuario.DataSource(FDataSource).Find('USUARIO', FUsuario.Usuario);
-  FDAOUsuario.DataSource(FDataSource).Find('EMAIL', FUsuario.Email);
-  if not FDataSource.DataSet.IsEmpty then begin
-    raise Exception.Create('já existe um usuário com essas informações');
-  end;
-  FDAOUsuario.Insert(FUsuario);
+
+  ValidaNovoUsuario(pUsuario);
+
+  FDAOUsuario.Insert(pUsuario);
 end;
 
 function TServiceUsuario.ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
@@ -131,9 +130,9 @@ begin
   end;
 end;
 
-class function TServiceUsuario.New(pUsuario: TUsuario): iServiceUsuario;
+class function TServiceUsuario.New: iServiceUsuario;
 begin
-  Result := Self.Create(pUsuario);
+  Result := Self.Create;
 end;
 
 function TServiceUsuario.RetornaLista: TList<TUsuario>;
@@ -141,9 +140,27 @@ begin
   Result := FLista;
 end;
 
-function TServiceUsuario.RetornaUsuario: TUsuario;
+procedure TServiceUsuario.ValidaNovoUsuario(pUsuario: TUsuario);
+var
+  vUsuarioCadastrado: String;
+  vEmailCadastrado: String;
 begin
-  Result := FUsuario
+  FDAOUsuario.DataSource(FDataSource).Find(False);
+
+  FDataSource.DataSet.First;
+  while not FDataSource.DataSet.Eof do begin
+    vUsuarioCadastrado := FDataSource.DataSet.FieldByName('USUARIO').AsWideString;
+    if vUsuarioCadastrado.Equals(pUsuario.Usuario) then begin
+      ExcecaoService.Create('usuário já cadastrado com esse login');
+    end;
+
+    vEmailCadastrado := FDataSource.DataSet.FieldByName('EMAIL').AsWideString;
+    if vEmailCadastrado.Equals(pUsuario.Email) then begin
+      ExcecaoService.Create('email já utilizado');
+    end;
+
+    FDataSource.DataSet.Next;
+  end;
 end;
 
 procedure TServiceUsuario.PopulaEntidadeUsuario;

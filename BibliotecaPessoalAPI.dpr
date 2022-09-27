@@ -20,7 +20,8 @@ uses
   BibliotecaPessoalAPI.Controller.DTO.Interfaces in 'src\Controller\DTO\BibliotecaPessoalAPI.Controller.DTO.Interfaces.pas',
   BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO in 'src\Controller\DTO\Impl\BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO.pas',
   BibliotecaPessoalAPI.Controller.Usuario in 'src\Controller\BibliotecaPessoalAPI.Controller.Usuario.pas',
-  Winapi.Windows;
+  Winapi.Windows,
+  BibliotecaPessoalAPI.Model.Exception.ExcecaoService in 'src\Model\Exception\BibliotecaPessoalAPI.Model.Exception.ExcecaoService.pas';
 
 var
   App: THorse;

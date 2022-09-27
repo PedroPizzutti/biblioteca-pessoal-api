@@ -60,7 +60,7 @@ begin
                   .DataCriacao(Now)
                   .CriaUsuario;
 
-    TServiceUsuario.New(vUsuario).Inserir;
+    TServiceUsuario.New.Inserir(vUsuario);
 
     vBodyResponse.AddPair('mensagem', 'usuário cadastrado com sucesso.');
 
