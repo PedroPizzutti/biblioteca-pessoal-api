@@ -29,7 +29,7 @@ uses
   SimpleDAO,
   SimpleQueryFiredac,
   System.Generics.Collections, System.SysUtils, 
-  BibliotecaPessoalAPI.Model.Exception.ExcecaoService;
+  BibliotecaPessoalAPI.Model.Exception.ExcecaoService, System.Classes;
 
 type
   TServiceUsuario = class(TInterfacedObject, iServiceUsuario)
@@ -43,6 +43,7 @@ type
 
       procedure PopulaEntidadeUsuario;
       procedure ValidaNovoUsuario(pUsuario: TUsuario);
+      procedure ValidaDadosUsuario(pUsuario: TUsuario);
     procedure CriptografaSenhaUsuario(var pUsuario: TUsuario);
     public
       constructor Create;
@@ -101,6 +102,7 @@ end;
 function TServiceUsuario.Inserir(pUsuario: TUsuario): iServiceUsuario;
 begin
   Result := Self;
+  ValidaDadosUsuario(pUsuario);
   ValidaNovoUsuario(pUsuario);
   CriptografaSenhaUsuario(pUsuario);
   FDAOUsuario.Insert(pUsuario);
@@ -121,13 +123,17 @@ end;
 function TServiceUsuario.ListarTodos: iServiceUsuario;
 begin
   Result := Self;
-  FDAOUsuario.DataSource(FDataSource).Find(False);
-
-  FDataSource.DataSet.First;
-  while not (FDataSource.DataSet.Eof) do begin
-    PopulaEntidadeUsuario;
-    FLista.Add(FUsuario);
-    FDataSource.DataSet.Next;
+  FUsuario := TUsuario.Create;
+  try
+    FDAOUsuario.DataSource(FDataSource).Find(False);
+    FDataSource.DataSet.First;
+    while not (FDataSource.DataSet.Eof) do begin
+      PopulaEntidadeUsuario;
+      FLista.Add(FUsuario);
+      FDataSource.DataSet.Next;
+    end;  
+  finally
+    FUsuario.DisposeOf;
   end;
 end;
 
@@ -146,27 +152,63 @@ begin
   pUsuario.Senha := TBCrypt.HashPassword(pUsuario.Senha);
 end;
 
+procedure TServiceUsuario.ValidaDadosUsuario(pUsuario: TUsuario);
+var
+  vListaMensagensErros: TStringList;
+begin
+  vListaMensagensErros := TStringList.Create;
+  try
+    if pUsuario.Usuario.IsEmpty then begin
+      vListaMensagensErros.Add('campo usuário é obrigatório.');
+    end;
+    if pUsuario.Senha.IsEmpty then begin
+      vListaMensagensErros.Add('campo senha é obrigatório.');
+    end;
+    if pUsuario.Email.IsEmpty then begin
+      vListaMensagensErros.Add('campo email é obrigatório.');
+    end;
+
+    if vListaMensagensErros.Count > 0 then begin
+      ExcecaoService.Create(vListaMensagensErros);
+    end;      
+  finally
+  vListaMensagensErros.DisposeOf;
+  end;
+
+end;
+
 procedure TServiceUsuario.ValidaNovoUsuario(pUsuario: TUsuario);
 var
   vUsuarioCadastrado: String;
   vEmailCadastrado: String;
+  vListaMensagensErros: TStringList;
 begin
-  FDAOUsuario.DataSource(FDataSource).Find(False);
+  vListaMensagensErros := TStringList.Create;
+  try
+    ListarTodos;
+    FDataSource.DataSet.First;
+    while not FDataSource.DataSet.Eof do begin
+      vUsuarioCadastrado := FDataSource.DataSet.FieldByName('USUARIO').AsWideString;
+      if vUsuarioCadastrado.Equals(pUsuario.Usuario) then begin
+        vListaMensagensErros.Add('usuário já cadastrado com esse nome.')
+      end;
 
-  FDataSource.DataSet.First;
-  while not FDataSource.DataSet.Eof do begin
-    vUsuarioCadastrado := FDataSource.DataSet.FieldByName('USUARIO').AsWideString;
-    if vUsuarioCadastrado.Equals(pUsuario.Usuario) then begin
-      ExcecaoService.Create('usuário já cadastrado com esse login');
+      vEmailCadastrado := FDataSource.DataSet.FieldByName('EMAIL').AsWideString;
+      if vEmailCadastrado.Equals(pUsuario.Email) then begin
+        vListaMensagensErros.Add('email já cadastrado.')
+      end;
+
+      FDataSource.DataSet.Next;
     end;
 
-    vEmailCadastrado := FDataSource.DataSet.FieldByName('EMAIL').AsWideString;
-    if vEmailCadastrado.Equals(pUsuario.Email) then begin
-      ExcecaoService.Create('email já utilizado');
+    if vListaMensagensErros.Count > 0 then begin
+      ExcecaoService.Create(vListaMensagensErros);
     end;
-
-    FDataSource.DataSet.Next;
+    
+  finally
+    vListaMensagensErros.DisposeOf;
   end;
+  FDAOUsuario.DataSource(FDataSource).Find(False);
 end;
 
 procedure TServiceUsuario.PopulaEntidadeUsuario;
