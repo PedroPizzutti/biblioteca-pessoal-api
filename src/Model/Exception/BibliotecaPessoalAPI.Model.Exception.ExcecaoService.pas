@@ -3,9 +3,9 @@ unit BibliotecaPessoalAPI.Model.Exception.ExcecaoService;
 interface
 
 uses
-  System.SysUtils,
+  System.Classes,
   System.Generics.Collections,
-  System.Classes;
+  System.SysUtils;
 
 type
   ExcecaoService = class(Exception)

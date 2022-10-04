@@ -5,58 +5,61 @@ interface
 uses
   Bcrypt,
   BibliotecaPessoalAPI.Model.Entity.Usuario,
+  BibliotecaPessoalAPI.Model.Exception.ExcecaoService, 
   BibliotecaPessoalAPI.Model.Resource.Interfaces,
   BibliotecaPessoalAPI.Model.Rosource.Impl.ResourceFactory,
   BibliotecaPessoalAPI.Model.Service.Interfaces,
   Data.DB,
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Error,
-  FireDAC.UI.Intf,
-  FireDAC.Phys.Intf,
-  FireDAC.Stan.Def,
-  FireDAC.Stan.Pool,
-  FireDAC.Stan.Async,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.UI,
   FireDAC.Phys,
+  FireDAC.Phys.Intf,
   FireDAC.Phys.SQLite,
   FireDAC.Phys.SQLiteDef,
-  FireDAC.Stan.ExprFuncs,
   FireDAC.Phys.SQLiteWrapper.Stat,
+  FireDAC.Stan.Async,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Error,
+  FireDAC.Stan.ExprFuncs,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Pool,
+  FireDAC.UI.Intf,
   FireDAC.VCLUI.Wait,
-  FireDAC.Comp.UI,
-  FireDAC.Comp.Client,
-  SimpleInterface,
   SimpleDAO,
+  SimpleInterface,
   SimpleQueryFiredac,
-  System.Generics.Collections, System.SysUtils, 
-  BibliotecaPessoalAPI.Model.Exception.ExcecaoService, System.Classes;
+  System.Classes,
+  System.Generics.Collections, 
+  System.SysUtils; 
 
 type
   TServiceUsuario = class(TInterfacedObject, iServiceUsuario)
     private
-      FLista: TList<TUsuario>;
+      FConexao: iConexao;       
+      FDAOUsuario: iSimpleDAO<TUsuario>;       
       FDataSource: TDataSource;
+      FLista: TList<TUsuario>;       
+      FQuery: iSimpleQuery;       
       FUsuario: TUsuario;
-      FConexao: iConexao;
-      FQuery: iSimpleQuery;
-      FDAOUsuario: iSimpleDAO<TUsuario>;
 
-      procedure PopulaEntidadeUsuario;
-      procedure ValidaNovoUsuario(pUsuario: TUsuario);
-      procedure ValidaDadosUsuario(pUsuario: TUsuario);
-    procedure CriptografaSenhaUsuario(var pUsuario: TUsuario);
+      procedure CriptografaSenhaUsuario(var pUsuario: TUsuario);
+      procedure PopulaEntidadeUsuario;       
+      procedure ValidaDadosUsuario(pUsuario: TUsuario);       
+      procedure ValidaSecuridadeSenha(pSenha: String);       
+      procedure ValidaUnicidadeUsuario(pUsuario: TUsuario);
     public
       constructor Create;
       destructor Destroy; override;
       class function New: iServiceUsuario;
 
-      function ListarTodos: iServiceUsuario;
-      function ListarPorId(pId: Integer): iServiceUsuario;
-      function ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
-      function Inserir(pUsuario: TUsuario): iServiceUsuario;
       function Atualizar(pUsuario: TUsuario): iServiceUsuario;
       function Excluir: iServiceUsuario; overload;
       function Excluir(pCampo: String; pValor: String): iServiceUsuario; overload;
+      function Inserir(pUsuario: TUsuario): iServiceUsuario;
+      function ListarTodos: iServiceUsuario;
+      function ListarPor(pChave: String; pValor: Variant): iServiceUsuario;
+      function ListarPorId(pId: Integer): iServiceUsuario;
       function RetornaLista: TList<TUsuario>;
   end;
 
@@ -102,9 +105,12 @@ end;
 function TServiceUsuario.Inserir(pUsuario: TUsuario): iServiceUsuario;
 begin
   Result := Self;
+  
   ValidaDadosUsuario(pUsuario);
-  ValidaNovoUsuario(pUsuario);
+  ValidaUnicidadeUsuario(pUsuario);
+  ValidaSecuridadeSenha(pUsuario.Senha);
   CriptografaSenhaUsuario(pUsuario);
+  
   FDAOUsuario.Insert(pUsuario);
 end;
 
@@ -177,7 +183,83 @@ begin
 
 end;
 
-procedure TServiceUsuario.ValidaNovoUsuario(pUsuario: TUsuario);
+procedure TServiceUsuario.ValidaSecuridadeSenha(pSenha: String);
+var
+  Algarismos: Set of '0'..'9';
+  LetrasMaiusculas: Set of 'A'..'Z';
+  LetrasMinusculas: Set of 'a'..'z';
+  CaracteresEspeciais: Set of Char;
+  vContador: Integer;
+  vTamanhoSenha: Integer;
+  vCaracter: Char;
+  vContemAlgarismo: Boolean;
+  vContemLetraMaiuscula: Boolean;
+  vContemLetraMinuscula: Boolean;
+  vContemCaracterEspecial: Boolean;
+  vMensagensErros: TStringList;
+begin
+  vMensagensErros := TStringList.Create;
+  try
+    Algarismos := ['0'..'9'];
+    LetrasMaiusculas := ['A'..'Z'];
+    LetrasMinusculas := ['a'..'z'];
+    CaracteresEspeciais := ['-','(',')','}','{','[',']',',',';',':','|','!','"','#','$','%','&','/','=','?','~','^','>','<','ª','º','@','*'];
+
+    vContemAlgarismo := False;
+    vContemLetraMaiuscula := False;
+    vContemLetraMinuscula := False;
+    vContemCaracterEspecial := False;
+
+    vTamanhoSenha := pSenha.Length;
+    vContador := 0;
+
+    while vContador < vTamanhoSenha do begin
+      vCaracter := pSenha.ToCharArray[vContador];
+
+      if vCaracter in Algarismos then begin
+        vContemAlgarismo := True;
+      end;
+      if vCaracter in LetrasMaiusculas then begin
+        vContemLetraMaiuscula := True;
+      end;
+      if vCaracter in LetrasMinusculas then begin
+        vContemLetraMinuscula := True;
+      end;
+      if vCaracter in CaracteresEspeciais then begin
+        vContemCaracterEspecial := True;
+      end;
+
+      Inc(vContador);
+    end;
+
+    if not vContemAlgarismo then begin
+      vMensagensErros.Add('a senha deve conter ao menos um algarismo.');
+    end;
+    if not vContemLetraMaiuscula then begin
+      vMensagensErros.Add('a senha deve conter ao menos uma letra maiúscula.');
+    end;
+    if not vContemLetraMinuscula then begin
+      vMensagensErros.Add('a senha deve conter ao menos uma letra minúscula.');
+    end;
+    if not vContemCaracterEspecial then begin
+      vMensagensErros.Add('a senha deve conter ao menos um caracter especial.');
+    end;
+    if (vTamanhoSenha < 5) or (vTamanhoSenha > 25) then begin
+      vMensagensErros.Add('a senha deve ter entre 5 e 25 caracteres');
+    end;
+
+    if vMensagensErros.Count > 0 then begin
+      ExcecaoService.Create(vMensagensErros);
+    end;
+    
+  finally
+    vMensagensErros.DisposeOf;
+  end;
+
+
+end;
+
+procedure TServiceUsuario.ValidaUnicidadeUsuario(pUsuario: TUsuario);
 var
   vUsuarioCadastrado: String;
   vEmailCadastrado: String;

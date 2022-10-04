@@ -29,6 +29,9 @@ var
   Conexao: iConexao;
 
 begin
+  {IFDEBUG}
+    ReportMemoryLeaksOnShutdown := True;
+  {ENDIF}
   App := THorse.Create;
   Conexao := TResourceFactory.New.Conexao;
 

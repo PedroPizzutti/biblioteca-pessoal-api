@@ -3,9 +3,9 @@ unit BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao;
 interface
 
 uses
-  System.SysUtils,
+  BibliotecaPessoalAPI.Model.Resource.Interfaces,
   LocalCache4D,
-  BibliotecaPessoalAPI.Model.Resource.Interfaces;
+  System.SysUtils;
 
 type
   TConfiguracao = class(TInterfacedObject, iConfiguracao)
@@ -15,22 +15,22 @@ type
       destructor Destroy; override;
       class function New: iConfiguracao;
 
-      function DriverID(pIdDriver: String): iConfiguracao; overload;
-      function DriverID: String; overload;
       function DataBase(pDataBase: String): iConfiguracao; overload;
       function Database: String; overload;
-      function UserName(pUserName: String): iConfiguracao; overload;
-      function UserName: String; overload;
+      function DriverID(pIdDriver: String): iConfiguracao; overload;
+      function DriverID: String; overload;
+      function Locking(pLocking: String): iConfiguracao; overload;
+      function Locking: String; overload;
       function Password(pPassword: String): iConfiguracao; overload;
       function Password: String; overload;
       function Port(pPort: String): iConfiguracao; overload;
       function Port: String; overload;
-      function Server(pServer: String): iConfiguracao; overload;
-      function Server: String; overload;
+      function UserName(pUserName: String): iConfiguracao; overload;
+      function UserName: String; overload;
       function Schema(pSchema: String): iConfiguracao; overload;
       function Schema: String; overload;
-      function Locking(pLocking: String): iConfiguracao; overload;
-      function Locking: String; overload;
+      function Server(pServer: String): iConfiguracao; overload;
+      function Server: String; overload;
   end;
 
 implementation

@@ -3,17 +3,24 @@ unit BibliotecaPessoalAPI.Controller.Usuario;
 interface
 
 uses
+  BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO,
+  BibliotecaPessoalAPI.Model.Service.Impl,
+  BibliotecaPessoalAPI.Model.Service.Interfaces,
+  BibliotecaPessoalAPI.Model.Entity.Usuario,
+  GBSwagger.Path.Attributes,
   Horse,
   Horse.GBSwagger,
-  GBSwagger.Path.Attributes,
   Horse.Jhonson,
   Horse.Commons,
   Rest.Json,
+  System.Classes,
   System.JSON,
-  System.SysUtils, BibliotecaPessoalAPI.Controller.DTO.Impl.UsuarioDTO,
-  BibliotecaPessoalAPI.Model.Service.Interfaces,
-  BibliotecaPessoalAPI.Model.Entity.Usuario,
-  BibliotecaPessoalAPI.Model.Service.Impl;
+  System.StrUtils,
+  System.SysUtils,
+  System.Types;
+
+
+
 
 type
   [SwagPath('login', 'Login')]
@@ -27,11 +34,6 @@ type
 
 implementation
 
-procedure Teste(Req: THorseRequest; Res: THorseResponse);
-begin
-  Res.Send('FUNCIONA!!');
-end;
-
 { TControllerUsuario }
 
 procedure TControllerUsuario.PostUsuario;
@@ -39,10 +41,12 @@ var
   vBodyRequest: TJSONObject;
   vBodyResponse: TJSONObject;
   vId: Integer;
+  vContador: Integer;
+  vQuantidadeMsgErro: Integer;
   vNome: String;
   vSenha: String;
   vEmail: String;
-  vMsg: String;
+  vMsgs: TStringDynArray;
   vUsuario : TUsuario;
 begin
   vBodyRequest := TJSONObject.Create;
@@ -65,8 +69,22 @@ begin
     vBodyResponse.AddPair('mensagem', 'usuário cadastrado com sucesso.');
 
     FResponse.Send(vBodyResponse).Status(THTTPStatus.Created);
+
   except on E: Exception do begin
-    vBodyResponse.AddPair('erro:', E.Message);
+
+    if E.Message.Contains('/') then begin
+      vMsgs := SplitString(E.Message, '/');
+      vQuantidadeMsgErro := E.Message.CountChar('/');
+
+      for vContador := 0 to (vQuantidadeMsgErro) do begin
+        vBodyResponse.AddPair('erro' + (vContador + 1).ToString + ':', vMsgs[vContador].Trim);
+      end;
+
+    end
+    else begin
+       vBodyResponse.AddPair('erro:', E.Message);
+    end;
+
     FResponse.Send(vBodyResponse).Status(THTTPStatus.BadRequest);
   end;
   end;

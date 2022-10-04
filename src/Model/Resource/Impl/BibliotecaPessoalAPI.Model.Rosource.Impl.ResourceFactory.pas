@@ -4,8 +4,8 @@ interface
 
 uses
   BibliotecaPessoalAPI.Model.Resource.Interfaces,
-  BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao,
-  BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite;
+  BibliotecaPessoalAPI.Model.Rosource.Impl.ConexaoFireDACSQLite,
+  BibliotecaPessoalAPI.Model.Rosource.Impl.Configuracao;
 
 type
   TResourceFactory = class(TInterfacedObject, iResourceFactory)

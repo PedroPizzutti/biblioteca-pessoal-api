@@ -59,9 +59,9 @@
     <Transaction>2022/09/26 22:08:06.000.016,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
     <Transaction>2022/09/26 22:08:19.000.011,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Exception\BibliotecaPessoalAPI.Model.Exception.ExcecaoService.pas</Transaction>
     <Transaction>2022/09/26 22:11:49.000.997,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\Unit1.pas</Transaction>
-    <Transaction>2022/09/26 23:04:25.243,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\modules\bcrypt-for-delphi\Bcrypt.pas</Transaction>
-    <Transaction>2022/09/26 23:05:07.492,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\modules\bcrypt-for-delphi\Bcrypt.pas=</Transaction>
-    <Transaction>2022/09/26 23:09:52.880,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Resource\BCrypt\Bcrypt.pas</Transaction>
+    <Transaction>2022/09/26 23:04:25.000.243,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\modules\bcrypt-for-delphi\Bcrypt.pas</Transaction>
+    <Transaction>2022/09/26 23:05:07.000.492,D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\modules\bcrypt-for-delphi\Bcrypt.pas=</Transaction>
+    <Transaction>2022/09/26 23:09:52.000.880,=D:\Meus Documentos\Documentos\Fontes\MeusProjetos\biblioteca_pessoal_api\src\Model\Resource\BCrypt\Bcrypt.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="src"/>

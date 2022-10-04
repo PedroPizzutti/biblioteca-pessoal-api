@@ -4,9 +4,10 @@ interface
 
 uses
   BibliotecaPessoalAPI.Controller.DTO.Interfaces,
-  BibliotecaPessoalAPI.Model.Service.Interfaces,
   BibliotecaPessoalAPI.Model.Entity.Usuario,
-  BibliotecaPessoalAPI.Model.Service.Impl, System.SysUtils;
+  BibliotecaPessoalAPI.Model.Service.Impl,
+  BibliotecaPessoalAPI.Model.Service.Interfaces,
+  System.SysUtils;
 
 type
   TUsuarioDTO = class(TInterfacedObject, iUsuarioDTO)

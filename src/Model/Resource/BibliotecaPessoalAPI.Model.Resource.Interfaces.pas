@@ -13,22 +13,22 @@ type
 
   iConfiguracao = interface
     ['{E5D533C5-F712-4111-A456-A77742AC04A0}']
-    function DriverID(pIdDriver: String): iConfiguracao; overload;
-    function DriverID: String; overload;
     function DataBase(pDataBase: String): iConfiguracao; overload;
     function Database: String; overload;
-    function UserName(pUserName: String): iConfiguracao; overload;
-    function UserName: String; overload;
+    function DriverID(pIdDriver: String): iConfiguracao; overload;
+    function DriverID: String; overload;
+    function Locking(pLocking: String): iConfiguracao; overload;
+    function Locking: String; overload;
     function Password(pPassword: String): iConfiguracao; overload;
     function Password: String; overload;
     function Port(pPort: String): iConfiguracao; overload;
     function Port: String; overload;
-    function Server(pServer: String): iConfiguracao; overload;
-    function Server: String; overload;
+    function UserName(pUserName: String): iConfiguracao; overload;
+    function UserName: String; overload;
     function Schema(pSchema: String): iConfiguracao; overload;
     function Schema: String; overload;
-    function Locking(pLocking: String): iConfiguracao; overload;
-    function Locking: String; overload;
+    function Server(pServer: String): iConfiguracao; overload;
+    function Server: String; overload;
   end;
 
   iResourceFactory = interface
