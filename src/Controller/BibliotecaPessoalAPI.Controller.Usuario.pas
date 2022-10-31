@@ -30,6 +30,18 @@ type
     [SwagResponse(201, 'Criado novo usuário!')]
     [SwagResponse(400, 'Erro ao criar novo usuário...')]
     procedure PostUsuario;
+
+    [SwagPUT('attUsuarioSenha/{idUsuario}', 'Atualiza senha do usuário')]
+    [SwagParamPath('idUsuario', 'Código do usuário', True)]
+    [SwagResponse(200,  'Senha atualizada!')]
+    [SwagResponse(400), 'Erro ao atualizar senha...']
+    procedure PutUsuarioSenha;
+
+    [SwagPUT('attUsuarioEmail/{idUsuario}', 'Atualiza email do usuário')]
+    [SwagParamPath('idUsuario', 'Código do usuário', True)]
+    [SwagResponse(200, 'Email atualizado!')]
+    [SwagResponse(400, 'Erro ao atualizar email...')]
+    procedure PutUsuarioEmail;
   end;
 
 implementation
@@ -88,6 +100,16 @@ begin
     FResponse.Send(vBodyResponse).Status(THTTPStatus.BadRequest);
   end;
   end;
+end;
+
+procedure TControllerUsuario.PutUsuarioEmail;
+begin
+  //Controller de atualização do email do usuário
+end;
+
+procedure TControllerUsuario.PutUsuarioSenha;
+begin
+  //Controller de atualização da senha do usuário
 end;
 
 end.
