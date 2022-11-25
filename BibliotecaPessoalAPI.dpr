@@ -51,7 +51,7 @@ begin
       {IFDEBUG}
         Writeln('Acesso: http://localhost:' + App.Port.ToString);
       {ENDIF}
-      Writeln('Pessione ENTER para parar a aplicação...');
+      Writeln('Pessione ... para parar a aplicação...');
       Readln;
       THorse.StopListen;
       FreeConsole;
